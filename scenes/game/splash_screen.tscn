@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://85pp07kdw0rw"]
+
+[ext_resource type="Script" uid="uid://dyqbnww6areq" path="res://scenes/game/splash_screen.gd" id="1_eina6"]
+[ext_resource type="Texture2D" uid="uid://ckteq7gl42k8p" path="res://assets/ui/logo3.png" id="1_yei5s"]
+[ext_resource type="Shader" uid="uid://ctdegtl0tadh4" path="res://scenes/game/fade.gdshader" id="2_wh6tg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_usb1j"]
+resource_local_to_scene = true
+shader = ExtResource("2_wh6tg")
+shader_parameter/opacity = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0ilf"]
+atlas = ExtResource("1_yei5s")
+
+[node name="SplashScreen" type="CanvasLayer"]
+script = ExtResource("1_eina6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 3
+texture_repeat = 1
+material = SubResource("ShaderMaterial_usb1j")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+texture = SubResource("AtlasTexture_m0ilf")
+metadata/_edit_use_anchors_ = true

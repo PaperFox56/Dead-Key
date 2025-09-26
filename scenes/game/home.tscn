@@ -1,0 +1,149 @@
+[gd_scene load_steps=5 format=3 uid="uid://usuxrxl4moa"]
+
+[ext_resource type="Script" uid="uid://boxqmhqywj3rc" path="res://scenes/game/home.gd" id="1_8uvjh"]
+[ext_resource type="Theme" uid="uid://2ur347yr6l6x" path="res://scenes/ui/hud.tres" id="1_t34mp"]
+[ext_resource type="Shader" uid="uid://c85c086vgrap4" path="res://scenes/tests/screen_glitch.gdshader" id="2_3wx2l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8uvjh"]
+resource_local_to_scene = true
+shader = ExtResource("2_3wx2l")
+shader_parameter/time_offset = 0.0
+shader_parameter/_strength = 10.0
+shader_parameter/horizontal_lines = false
+shader_parameter/noise_size = 50.0
+shader_parameter/corruption = 0.2
+shader_parameter/noise_intensity = 0.2
+
+[node name="Home" type="CanvasLayer"]
+script = ExtResource("1_8uvjh")
+
+[node name="Home" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_t34mp")
+theme_type_variation = &"MenuPanel"
+
+[node name="Title" type="VBoxContainer" parent="Home"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TileLable" type="RichTextLabel" parent="Home/Title"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_t34mp")
+theme_type_variation = &"TitleLabel"
+bbcode_enabled = true
+text = "Dead Key"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="MemoryBar" type="VBoxContainer" parent="Home"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="MemoryDisplay" type="RichTextLabel" parent="Home/MemoryBar"]
+layout_mode = 2
+size_flags_horizontal = 0
+bbcode_enabled = true
+text = "Memory: "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Buttons" type="VBoxContainer" parent="Home"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Start" type="Button" parent="Home/Buttons"]
+layout_mode = 2
+text = "Start new game"
+
+[node name="SelectMemories" type="Button" parent="Home/Buttons"]
+layout_mode = 2
+text = "Memories"
+
+[node name="Quit" type="Button" parent="Home/Buttons"]
+layout_mode = 2
+text = "Quit
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_t34mp")
+theme_override_constants/margin_left = 75
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 75
+theme_override_constants/margin_bottom = 75
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "
+This will erase your progress.
+Proceed ?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Yes" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "  YES  "
+
+[node name="No" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "  NO  "
+
+[node name="CheckButton" type="CheckButton" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -167.0
+offset_top = -39.0
+offset_right = -11.0
+offset_bottom = -15.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("1_t34mp")
+text = "Glitch effects"
+
+[node name="ScreenGlitch" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_8uvjh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="Home/Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Home/Buttons/SelectMemories" to="." method="_on_select_memories_pressed"]
+[connection signal="pressed" from="Home/Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/No" to="." method="_on_no_pressed"]
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]

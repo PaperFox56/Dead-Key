@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=4 uid="uid://daq7qp43ajp1t"]
+
+[ext_resource type="Script" uid="uid://c845p2wfd5w0" path="res://scenes/game/levels/level_4.gd" id="1_jtt63"]
+[ext_resource type="PackedScene" uid="uid://8mbaywudonqb" path="res://scenes/characters/player/player.tscn" id="2_jtt63"]
+[ext_resource type="PackedScene" uid="uid://bi88hr3qhcc6s" path="res://scenes/ui/hud.tscn" id="3_a12uu"]
+[ext_resource type="PackedScene" uid="uid://e6pp2v6vbmx1" path="res://scenes/ui/screen_glitch.tscn" id="4_56sjp"]
+[ext_resource type="TileSet" uid="uid://c5mgq4f37r3co" path="res://tilesets/game_tile_set.tres" id="5_a8j0w"]
+[ext_resource type="PackedScene" uid="uid://dq342oqofipl1" path="res://scenes/objects/level_end.tscn" id="6_u7qbb"]
+[ext_resource type="PackedScene" uid="uid://c0kdiqjpn11qw" path="res://scenes/objects/memory_shard.tscn" id="7_fdsqx"]
+[ext_resource type="PackedScene" uid="uid://bufpjdcsn32lc" path="res://scenes/characters/enemies/echo.tscn" id="8_jtt63"]
+
+[node name="Level4" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_jtt63")
+id = "level_4"
+player = NodePath("Player")
+memory = 10
+right = 3
+jumps = 5
+glitches = 1
+
+[node name="Player" parent="." instance=ExtResource("2_jtt63")]
+position = Vector2(1000, 0)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(66, -37)
+
+[node name="HUD" parent="Player" instance=ExtResource("3_a12uu")]
+
+[node name="ScreenGlitch" parent="Player/HUD" instance=ExtResource("4_56sjp")]
+
+[node name="Tilemap" type="Node2D" parent="."]
+
+[node name="Ground" type="TileMapLayer" parent="Tilemap"]
+tile_map_data = PackedByteArray("AABEAAMAAAACAAYAAABEAAIAAAACAAUAAABDAAMAAAABAAYAAABDAAIAAAABAAUAAABCAAMAAAABAAYAAABCAAIAAAABAAUAAABBAAMAAAABAAYAAABBAAIAAAABAAUAAABAAAMAAAABAAYAAABAAAIAAAABAAUAAAA/AAMAAAABAAYAAAA/AAIAAAABAAUAAAA+AAMAAAABAAYAAAA+AAIAAAABAAUAAAA9AAMAAAABAAYAAAA9AAIAAAABAAUAAAA8AAMAAAABAAYAAAA8AAIAAAABAAUAAAA7AAMAAAABAAYAAAA7AAIAAAABAAUAAABEAAQAAAACAAcAAABDAAQAAAABAAcAAABCAAQAAAABAAcAAABBAAQAAAABAAcAAABAAAQAAAABAAcAAAA/AAQAAAABAAcAAAA+AAQAAAABAAcAAAA9AAQAAAABAAcAAAA8AAQAAAABAAcAAAA7AAQAAAABAAcAAAA6AAQAAAABAAcAAAA6AAMAAAABAAYAAAA6AAIAAAABAAUAAAA5AAQAAAABAAcAAAA5AAMAAAABAAYAAAA5AAIAAAABAAUAAAA4AAQAAAABAAcAAAA4AAMAAAABAAYAAAA4AAIAAAABAAUAAAA3AAQAAAAAAAcAAAA3AAMAAAAAAAYAAAA3AAIAAAAAAAUAAABJAAIAAAAGAAQAAABIAAIAAAAEAAQAAABTAAIAAAAGAAQAAABSAAIAAAAEAAQAAABYAAIAAAAGAAQAAABXAAIAAAAEAAQAAABhAAQAAAACAAcAAABhAAMAAAACAAYAAABhAAIAAAACAAUAAABgAAQAAAABAAcAAABgAAMAAAABAAYAAABgAAIAAAABAAUAAABfAAQAAAABAAcAAABfAAMAAAABAAYAAABfAAIAAAABAAUAAABeAAQAAAABAAcAAABeAAMAAAABAAYAAABeAAIAAAABAAUAAABdAAQAAAABAAcAAABdAAMAAAABAAYAAABdAAIAAAABAAUAAABcAAQAAAABAAcAAABcAAMAAAABAAYAAABcAAIAAAABAAUAAABbAAQAAAAAAAcAAABbAAMAAAAAAAYAAABbAAIAAAAAAAUAAABNAAIAAAAEAAQAAABOAAIAAAAGAAQAAABPAP//AAAEAAQAAABQAP//AAAFAAQAAABRAP//AAAGAAQAAAA=")
+tile_set = ExtResource("5_a8j0w")
+
+[node name="Obstacles" type="TileMapLayer" parent="Tilemap"]
+tile_map_data = PackedByteArray("AABQAAAAAAAGAAcAAAA=")
+tile_set = ExtResource("5_a8j0w")
+
+[node name="LevelEnd" parent="." instance=ExtResource("6_u7qbb")]
+position = Vector2(1524, 15)
+
+[node name="MemoryShard" parent="." instance=ExtResource("7_fdsqx")]
+position = Vector2(1285, 7)
+memories = {
+"jump": 1,
+"left": 0,
+"memory": 0,
+"right": 1
+}
+
+[node name="Echo" parent="." instance=ExtResource("8_jtt63")]
+position = Vector2(1000, 0)
+use_preprogramed_data = true
+delay = 1.5

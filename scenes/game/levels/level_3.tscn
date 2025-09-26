@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=4 uid="uid://c1f3pmuw0ue3i"]
+
+[ext_resource type="Script" uid="uid://yvkhkbeaprcl" path="res://scenes/game/levels/level_3.gd" id="1_i50ya"]
+[ext_resource type="PackedScene" uid="uid://8mbaywudonqb" path="res://scenes/characters/player/player.tscn" id="2_uncf6"]
+[ext_resource type="PackedScene" uid="uid://bi88hr3qhcc6s" path="res://scenes/ui/hud.tscn" id="3_hw0gv"]
+[ext_resource type="PackedScene" uid="uid://e6pp2v6vbmx1" path="res://scenes/ui/screen_glitch.tscn" id="4_fd5cg"]
+[ext_resource type="TileSet" uid="uid://c5mgq4f37r3co" path="res://tilesets/game_tile_set.tres" id="5_1f0nd"]
+[ext_resource type="PackedScene" uid="uid://dq342oqofipl1" path="res://scenes/objects/level_end.tscn" id="6_wahtw"]
+[ext_resource type="PackedScene" uid="uid://c0kdiqjpn11qw" path="res://scenes/objects/memory_shard.tscn" id="7_yhxij"]
+
+[node name="Level3" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_i50ya")
+id = "level_3"
+player = NodePath("Player")
+memory = 10
+right = 2
+jumps = 5
+glitches = 1
+
+[node name="Player" parent="." instance=ExtResource("2_uncf6")]
+position = Vector2(1000, 0)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(66, -37)
+
+[node name="HUD" parent="Player" instance=ExtResource("3_hw0gv")]
+
+[node name="ScreenGlitch" parent="Player/HUD" instance=ExtResource("4_fd5cg")]
+
+[node name="Tilemap" type="Node2D" parent="."]
+
+[node name="Ground" type="TileMapLayer" parent="Tilemap"]
+tile_map_data = PackedByteArray("AABEAAMAAAACAAYAAABEAAIAAAACAAUAAABDAAMAAAABAAYAAABDAAIAAAABAAUAAABCAAMAAAABAAYAAABCAAIAAAABAAUAAABBAAMAAAABAAYAAABBAAIAAAABAAUAAABAAAMAAAABAAYAAABAAAIAAAABAAUAAAA/AAMAAAABAAYAAAA/AAIAAAABAAUAAAA+AAMAAAABAAYAAAA+AAIAAAABAAUAAAA9AAMAAAABAAYAAAA9AAIAAAABAAUAAAA8AAMAAAABAAYAAAA8AAIAAAABAAUAAAA7AAMAAAABAAYAAAA7AAIAAAABAAUAAABEAAQAAAACAAcAAABDAAQAAAABAAcAAABCAAQAAAABAAcAAABBAAQAAAABAAcAAABAAAQAAAABAAcAAAA/AAQAAAABAAcAAAA+AAQAAAABAAcAAAA9AAQAAAABAAcAAAA8AAQAAAABAAcAAAA7AAQAAAABAAcAAAA6AAQAAAABAAcAAAA6AAMAAAABAAYAAAA6AAIAAAABAAUAAAA5AAQAAAABAAcAAAA5AAMAAAABAAYAAAA5AAIAAAABAAUAAAA4AAQAAAABAAcAAAA4AAMAAAABAAYAAAA4AAIAAAABAAUAAAA3AAQAAAAAAAcAAAA3AAMAAAAAAAYAAAA3AAIAAAAAAAUAAABJAAIAAAAGAAQAAABIAAIAAAAEAAQAAABTAAIAAAAGAAQAAABSAAIAAAAEAAQAAABYAAIAAAAGAAQAAABXAAIAAAAEAAQAAABhAAQAAAACAAcAAABhAAMAAAACAAYAAABhAAIAAAACAAUAAABgAAQAAAABAAcAAABgAAMAAAABAAYAAABgAAIAAAABAAUAAABfAAQAAAABAAcAAABfAAMAAAABAAYAAABfAAIAAAABAAUAAABeAAQAAAABAAcAAABeAAMAAAABAAYAAABeAAIAAAABAAUAAABdAAQAAAABAAcAAABdAAMAAAABAAYAAABdAAIAAAABAAUAAABcAAQAAAABAAcAAABcAAMAAAABAAYAAABcAAIAAAABAAUAAABbAAQAAAAAAAcAAABbAAMAAAAAAAYAAABbAAIAAAAAAAUAAABNAAIAAAAEAAQAAABOAAIAAAAGAAQAAABPAP//AAAEAAQAAABQAP//AAAFAAQAAABRAP//AAAGAAQAAAA=")
+tile_set = ExtResource("5_1f0nd")
+
+[node name="Obstacles" type="TileMapLayer" parent="Tilemap"]
+tile_map_data = PackedByteArray("AABQAAAAAAAGAAcAAAA=")
+tile_set = ExtResource("5_1f0nd")
+
+[node name="LevelEnd" parent="." instance=ExtResource("6_wahtw")]
+position = Vector2(1524, 15)
+
+[node name="MemoryShard" parent="." instance=ExtResource("7_yhxij")]
+position = Vector2(1284, 7)
+memories = {
+"jump": 1,
+"left": 0,
+"memory": 0,
+"right": 1
+}

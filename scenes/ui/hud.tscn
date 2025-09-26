@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi88hr3qhcc6s"]
+
+[ext_resource type="Theme" uid="uid://2ur347yr6l6x" path="res://scenes/ui/hud.tres" id="2_bo48s"]
+[ext_resource type="Script" uid="uid://cvt6gvhx7hhax" path="res://scenes/ui/hud.gd" id="2_hqnrr"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("2_hqnrr")
+text_color = Color(0.830381, 0.830381, 0.830381, 1)
+bar_color = Color(0.831373, 0.831373, 0.831373, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 400.0
+offset_bottom = 67.0
+theme = ExtResource("2_bo48s")
+
+[node name="MemoryBar" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MemoryDisplay" type="RichTextLabel" parent="MarginContainer/MemoryBar"]
+layout_mode = 2
+size_flags_vertical = 0
+bbcode_enabled = true
+text = "Memory: ▣▣▣▣▣"
+fit_content = true
+autowrap_mode = 0
+
+[node name="InputDisplay" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="LeftDisplay" type="RichTextLabel" parent="MarginContainer/InputDisplay"]
+layout_mode = 2
+bbcode_enabled = true
+text = "   ←: ▣▣▣▣▣"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightDisplay" type="RichTextLabel" parent="MarginContainer/InputDisplay"]
+layout_mode = 2
+bbcode_enabled = true
+text = "   →: ▣▣▣▣▣"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JumpDisplay" type="RichTextLabel" parent="MarginContainer/InputDisplay"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Jump: ▣▣▣▣▣"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GlitchBar" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="GlitchDisplay" type="RichTextLabel" parent="MarginContainer/GlitchBar"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Glitch: ▣▣▣▣▣"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScreenIntegrity" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+bbcode_enabled = true
+text = "Screen: "
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

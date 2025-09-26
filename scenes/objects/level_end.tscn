@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://dq342oqofipl1"]
+
+[ext_resource type="Texture2D" uid="uid://bvrmcvj7t3k4m" path="res://assets/game/objects/memoryShard.png" id="1_2hyyh"]
+[ext_resource type="Script" uid="uid://bwndstlwla3qq" path="res://scenes/objects/level_end.gd" id="2_73y42"]
+[ext_resource type="Shader" uid="uid://b1188wjk27wxq" path="res://scenes/objects/object_glitches.gdshader" id="3_73y42"]
+[ext_resource type="AudioStream" uid="uid://duaag28xevycc" path="res://assets/audio/level_end_sound.mp3" id="4_bu8rl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu8rl"]
+atlas = ExtResource("1_2hyyh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhkpt"]
+atlas = ExtResource("1_2hyyh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6335w"]
+atlas = ExtResource("1_2hyyh")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jcyy"]
+atlas = ExtResource("1_2hyyh")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ngos7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu8rl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhkpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6335w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jcyy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hob2"]
+size = Vector2(7, 11)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bu8rl"]
+resource_local_to_scene = true
+shader = ExtResource("3_73y42")
+shader_parameter/glitch_active = true
+shader_parameter/time_offset = 0.0
+shader_parameter/_strength = 0.5
+shader_parameter/horizontal_lines = false
+shader_parameter/noise_size = 20.0
+shader_parameter/corruption = 0.5
+shader_parameter/noise_intensity = 0.8
+
+[node name="LevelEnd" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ngos7")
+autoplay = "default"
+frame_progress = 0.909449
+script = ExtResource("2_73y42")
+max_offset = Vector2(2, 2)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_6hob2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_bu8rl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -28.0
+offset_right = 16.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bu8rl")
+volume_db = 24.0
+pitch_scale = 0.73
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

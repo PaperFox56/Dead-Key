@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=4 uid="uid://bnnat018me4cu"]
+
+[ext_resource type="Script" uid="uid://duppskmxrg2x7" path="res://scenes/game/levels/level.gd" id="1_22yhj"]
+[ext_resource type="PackedScene" uid="uid://8mbaywudonqb" path="res://scenes/characters/player/player.tscn" id="1_v68yw"]
+[ext_resource type="TileSet" uid="uid://c5mgq4f37r3co" path="res://tilesets/game_tile_set.tres" id="3_3u6cc"]
+[ext_resource type="PackedScene" uid="uid://bi88hr3qhcc6s" path="res://scenes/ui/hud.tscn" id="3_x1c7m"]
+[ext_resource type="PackedScene" uid="uid://e6pp2v6vbmx1" path="res://scenes/ui/screen_glitch.tscn" id="4_1bryu"]
+[ext_resource type="PackedScene" uid="uid://dq342oqofipl1" path="res://scenes/objects/level_end.tscn" id="6_1bryu"]
+[ext_resource type="Theme" uid="uid://2ur347yr6l6x" path="res://scenes/ui/hud.tres" id="7_2u4xi"]
+[ext_resource type="PackedScene" uid="uid://c0kdiqjpn11qw" path="res://scenes/objects/memory_shard.tscn" id="7_dxp7b"]
+[ext_resource type="FontFile" uid="uid://b03a0cniearoh" path="res://assets/fonts/PressStart2P-Regular.ttf" id="8_o1xna"]
+
+[node name="Level1" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_22yhj")
+id = "level_1"
+player = NodePath("Player")
+memory = 10
+left = 1
+right = 3
+jumps = 1
+glitches = 2
+
+[node name="Player" parent="." instance=ExtResource("1_v68yw")]
+position = Vector2(1000, 0)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(66, -37)
+
+[node name="HUD" parent="Player" instance=ExtResource("3_x1c7m")]
+
+[node name="Tilemap" type="Node2D" parent="."]
+
+[node name="Ground" type="TileMapLayer" parent="Tilemap"]
+tile_map_data = PackedByteArray("AABDAAIAAAACAAcAAABDAAEAAAACAAYAAABDAAAAAAACAAUAAABCAAIAAAABAAcAAABCAAEAAAABAAYAAABCAAAAAAABAAUAAABBAAIAAAABAAcAAABBAAEAAAABAAYAAABBAAAAAAABAAUAAABAAAIAAAABAAcAAABAAAEAAAABAAYAAABAAAAAAAABAAUAAAA/AAIAAAABAAcAAAA/AAEAAAABAAYAAAA/AAAAAAABAAUAAAA+AAIAAAABAAcAAAA+AAEAAAABAAYAAAA+AAAAAAABAAUAAAA9AAIAAAABAAcAAAA9AAEAAAABAAYAAAA9AAAAAAABAAUAAAA8AAIAAAAAAAcAAAA8AAEAAAAAAAYAAAA8AAAAAAAAAAUAAABKAAIAAAACAAcAAABKAAEAAAACAAYAAABKAAAAAAACAAUAAABJAAIAAAABAAcAAABJAAEAAAABAAYAAABJAAAAAAABAAUAAABIAAIAAAABAAcAAABIAAEAAAABAAYAAABIAAAAAAABAAUAAABHAAIAAAABAAcAAABHAAEAAAABAAYAAABHAAAAAAABAAUAAABGAAIAAAABAAcAAABGAAEAAAABAAYAAABGAAAAAAABAAUAAABFAAIAAAAAAAcAAABFAAEAAAAAAAYAAABFAAAAAAAAAAUAAABGAPr/AAAEAAQAAABHAPr/AAAFAAQAAABIAPr/AAAFAAQAAABJAPr/AAAFAAQAAABKAPr/AAAGAAQAAABNAP3/AAAAAAUAAABRAP7/AAACAAcAAABRAP3/AAACAAUAAABQAP7/AAABAAcAAABQAP3/AAABAAUAAABPAP7/AAABAAcAAABPAP3/AAABAAUAAABOAP7/AAABAAcAAABOAP3/AAABAAUAAABNAP7/AAAAAAcAAAA=")
+tile_set = ExtResource("3_3u6cc")
+
+[node name="Obstacles" type="TileMapLayer" parent="Tilemap"]
+tile_set = ExtResource("3_3u6cc")
+
+[node name="LevelEnd" parent="." instance=ExtResource("6_1bryu")]
+position = Vector2(1131, -111)
+
+[node name="Label" type="Label" parent="LevelEnd"]
+offset_left = -29.0
+offset_top = -17.0
+offset_right = 37.0
+offset_bottom = 6.0
+theme = ExtResource("7_2u4xi")
+theme_override_fonts/font = ExtResource("8_o1xna")
+theme_override_font_sizes/font_size = 8
+text = "The END"
+
+[node name="MemoryShard" parent="." instance=ExtResource("7_dxp7b")]
+position = Vector2(1144, -16)
+memories = {
+"jump": 2,
+"left": 0,
+"memory": 0,
+"right": 0
+}
+
+[node name="Label" type="Label" parent="MemoryShard"]
+offset_left = -71.0
+offset_top = -43.0
+offset_right = 68.0
+offset_bottom = -12.0
+theme = ExtResource("7_2u4xi")
+theme_override_fonts/font = ExtResource("8_o1xna")
+theme_override_font_sizes/font_size = 8
+text = "Memory shards give you some of your inputs back"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ScreenGlitch" parent="." instance=ExtResource("4_1bryu")]

@@ -1,0 +1,131 @@
+[gd_scene load_steps=17 format=3 uid="uid://bxsq6ahnmknq7"]
+
+[ext_resource type="Script" uid="uid://dkefjqgfhim5y" path="res://scenes/game/level_button.gd" id="1_di1ux"]
+[ext_resource type="Theme" uid="uid://2ur347yr6l6x" path="res://scenes/ui/hud.tres" id="2_7ldk7"]
+[ext_resource type="Shader" uid="uid://b1188wjk27wxq" path="res://scenes/objects/object_glitches.gdshader" id="3_7ldk7"]
+[ext_resource type="Texture2D" uid="uid://dye2ygfjk4221" path="res://assets/ui/memoryShard1.png" id="5_m8hmd"]
+[ext_resource type="Texture2D" uid="uid://yrv4wpaia3mc" path="res://assets/ui/memoryShard2.png" id="5_yaxlp"]
+[ext_resource type="Texture2D" uid="uid://dj1iwwfel33ef" path="res://assets/ui/memoryShard3.png" id="7_am55u"]
+[ext_resource type="Texture2D" uid="uid://ck8fnbo8cbqqj" path="res://assets/ui/memoryShard4.png" id="8_tc33w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4h6sh"]
+resource_local_to_scene = true
+shader = ExtResource("3_7ldk7")
+shader_parameter/glitch_active = true
+shader_parameter/time_offset = 0.0
+shader_parameter/_strength = 0.5
+shader_parameter/horizontal_lines = false
+shader_parameter/noise_size = 20.0
+shader_parameter/corruption = 0.5
+shader_parameter/noise_intensity = 0.8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4h6sh"]
+atlas = ExtResource("5_m8hmd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Animation" id="Animation_tc33w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("AtlasTexture_4h6sh")]
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guk7y"]
+atlas = ExtResource("5_m8hmd")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkyu0"]
+atlas = ExtResource("5_yaxlp")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlur8"]
+atlas = ExtResource("7_am55u")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1pll"]
+atlas = ExtResource("8_tc33w")
+
+[sub_resource type="Animation" id="Animation_4h6sh"]
+resource_name = "new_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [SubResource("AtlasTexture_guk7y"), SubResource("AtlasTexture_wkyu0"), SubResource("AtlasTexture_rlur8"), SubResource("AtlasTexture_o1pll")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yaxlp"]
+_data = {
+&"RESET": SubResource("Animation_tc33w"),
+&"new_animation": SubResource("Animation_4h6sh")
+}
+
+[node name="LevelButton" type="Button"]
+use_parent_material = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -15.5
+offset_right = 53.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme = ExtResource("2_7ldk7")
+text = "Level 1"
+script = ExtResource("1_di1ux")
+level_id = "level_1"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_4h6sh")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -8.0
+offset_right = 24.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = SubResource("AtlasTexture_4h6sh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yaxlp")
+}
+autoplay = "new_animation"
+speed_scale = 2.0
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

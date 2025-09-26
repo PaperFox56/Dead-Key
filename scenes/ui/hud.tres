@@ -1,0 +1,114 @@
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://2ur347yr6l6x"]
+
+[ext_resource type="FontFile" uid="uid://b03a0cniearoh" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_qex8j"]
+[ext_resource type="Texture2D" uid="uid://cwuhsv6tfaal2" path="res://assets/ui/1-bit_UI_byBatuhanK.png" id="2_qv02p"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qv02p"]
+load_path = "res://.godot/imported/1-bit_UI_byBatuhanK.png-c29ed62cb163f928cec717b9694aa4eb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bby5k"]
+atlas = SubResource("CompressedTexture2D_qv02p")
+region = Rect2(96, 83, 39, 14)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_011al"]
+texture = SubResource("AtlasTexture_bby5k")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv02p"]
+atlas = ExtResource("2_qv02p")
+region = Rect2(96, 83, 39, 14)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x42o2"]
+texture = SubResource("AtlasTexture_qv02p")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bby5k"]
+load_path = "res://.godot/imported/1-bit_UI_byBatuhanK.png-c29ed62cb163f928cec717b9694aa4eb.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_011al"]
+atlas = SubResource("CompressedTexture2D_bby5k")
+region = Rect2(96, 83, 39, 14)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nvj1r"]
+texture = SubResource("AtlasTexture_011al")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+modulate_color = Color(0.785124, 0.785124, 0.785124, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x42o2"]
+atlas = ExtResource("2_qv02p")
+region = Rect2(96, 83, 39, 14)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bby5k"]
+texture = SubResource("AtlasTexture_x42o2")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+modulate_color = Color(0.676505, 0.676505, 0.676505, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vocyq"]
+texture = SubResource("AtlasTexture_qv02p")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qv02p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvj1r"]
+atlas = ExtResource("2_qv02p")
+region = Rect2(271, 119, 174, 83)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tqhjg"]
+texture = SubResource("AtlasTexture_nvj1r")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 15.0
+texture_margin_bottom = 15.0
+
+[resource]
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_qex8j")
+Button/styles/disabled = SubResource("StyleBoxTexture_011al")
+Button/styles/focus = SubResource("StyleBoxTexture_x42o2")
+Button/styles/hover = SubResource("StyleBoxTexture_nvj1r")
+Button/styles/normal = SubResource("StyleBoxTexture_bby5k")
+Button/styles/pressed = SubResource("StyleBoxTexture_vocyq")
+CheckButton/font_sizes/font_size = 8
+CheckButton/fonts/font = ExtResource("1_qex8j")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 9
+Label/fonts/font = ExtResource("1_qex8j")
+Label/styles/normal = SubResource("StyleBoxEmpty_qv02p")
+MarginContainer/constants/margin_bottom = 6
+MarginContainer/constants/margin_left = 6
+MarginContainer/constants/margin_right = 6
+MarginContainer/constants/margin_top = 6
+MenuPanel/base_type = &"MarginContainer"
+MenuPanel/constants/margin_bottom = 15
+MenuPanel/constants/margin_left = 15
+MenuPanel/constants/margin_right = 15
+MenuPanel/constants/margin_top = 15
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_tqhjg")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/constants/line_separation = 3
+RichTextLabel/font_sizes/normal_font_size = 14
+RichTextLabel/fonts/normal_font = ExtResource("1_qex8j")
+TitleLabel/base_type = &"RichTextLabel"
+TitleLabel/font_sizes/normal_font_size = 32

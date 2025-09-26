@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://c0kdiqjpn11qw"]
+
+[ext_resource type="Texture2D" uid="uid://bvrmcvj7t3k4m" path="res://assets/game/objects/memoryShard.png" id="1_xicpa"]
+[ext_resource type="Script" uid="uid://dp0h3djq0i3ta" path="res://scenes/objects/memory_shard.gd" id="2_6dv5p"]
+[ext_resource type="PackedScene" uid="uid://bucd4a2faof1q" path="res://scenes/components/collectible_component.tscn" id="2_cae2k"]
+[ext_resource type="AudioStream" uid="uid://c837xe5g5ehmw" path="res://assets/audio/memory_pickup_sound.mp3" id="4_aeghb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cae2k"]
+atlas = ExtResource("1_xicpa")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dv5p"]
+atlas = ExtResource("1_xicpa")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeghb"]
+atlas = ExtResource("1_xicpa")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb6pk"]
+atlas = ExtResource("1_xicpa")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_px10e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cae2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dv5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aeghb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb6pk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6dv5p"]
+radius = 4.0
+
+[node name="MemoryShard" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_px10e")
+autoplay = "default"
+frame_progress = 0.0516396
+script = ExtResource("2_6dv5p")
+
+[node name="CollectibleComponent" parent="." instance=ExtResource("2_cae2k")]
+collectible_name = "MemoryShard"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectibleComponent"]
+shape = SubResource("CircleShape2D_6dv5p")
+debug_color = Color(0.458865, 0.48278, 0.900438, 0.42)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_aeghb")
+volume_db = 15.0

@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=4 uid="uid://bftd3sqomuucm"]
+
+[ext_resource type="Script" uid="uid://dmbn7hyxossai" path="res://scenes/game/levels/level_5.gd" id="1_45yym"]
+[ext_resource type="PackedScene" uid="uid://8mbaywudonqb" path="res://scenes/characters/player/player.tscn" id="2_45yym"]
+[ext_resource type="PackedScene" uid="uid://bi88hr3qhcc6s" path="res://scenes/ui/hud.tscn" id="3_jrmgl"]
+[ext_resource type="PackedScene" uid="uid://e6pp2v6vbmx1" path="res://scenes/ui/screen_glitch.tscn" id="4_1ig7r"]
+[ext_resource type="TileSet" uid="uid://c5mgq4f37r3co" path="res://tilesets/game_tile_set.tres" id="5_yyxgb"]
+[ext_resource type="PackedScene" uid="uid://dq342oqofipl1" path="res://scenes/objects/level_end.tscn" id="6_a7iqe"]
+[ext_resource type="Script" uid="uid://dbyew6r3vmwtg" path="res://scenes/objects/level_end_amnesia.gd" id="7_45yym"]
+[ext_resource type="PackedScene" uid="uid://c0kdiqjpn11qw" path="res://scenes/objects/memory_shard.tscn" id="7_mv065"]
+[ext_resource type="Theme" uid="uid://2ur347yr6l6x" path="res://scenes/ui/hud.tres" id="8_jrmgl"]
+
+[node name="Level5" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_45yym")
+id = "level_5"
+player = NodePath("Player")
+memory = 10
+left = 2
+right = 2
+jumps = 5
+glitches = 2
+
+[node name="Player" parent="." instance=ExtResource("2_45yym")]
+position = Vector2(1000, 0)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(66, -37)
+
+[node name="HUD" parent="Player" instance=ExtResource("3_jrmgl")]
+text_color = Color(1, 1, 1, 1)
+
+[node name="ScreenGlitch" parent="Player/HUD" instance=ExtResource("4_1ig7r")]
+
+[node name="Tilemap" type="Node2D" parent="."]
+
+[node name="Ground" type="TileMapLayer" parent="Tilemap"]
+tile_map_data = PackedByteArray("AABAAAMAAAACAAcAAABAAAIAAAACAAYAAABAAAEAAAACAAUAAAA/AAMAAAABAAcAAAA/AAIAAAABAAYAAAA/AAEAAAABAAUAAAA+AAMAAAABAAcAAAA+AAIAAAABAAYAAAA+AAEAAAABAAUAAAA9AAMAAAABAAcAAAA9AAIAAAABAAYAAAA9AAEAAAABAAUAAAA8AAMAAAABAAcAAAA8AAIAAAABAAYAAAA8AAEAAAABAAUAAAA7AAMAAAABAAcAAAA7AAIAAAABAAYAAAA7AAEAAAABAAUAAAA6AAMAAAABAAcAAAA6AAIAAAABAAYAAAA6AAEAAAABAAUAAAA5AAMAAAABAAcAAAA5AAIAAAABAAYAAAA5AAEAAAABAAUAAAA4AAMAAAABAAcAAAA4AAIAAAABAAYAAAA4AAEAAAABAAUAAAA3AAMAAAAAAAcAAAA3AAIAAAAAAAYAAAA3AAEAAAAAAAUAAAA/AP3/AAACAAcAAAA/APz/AAACAAUAAAA+AP3/AAABAAcAAAA+APz/AAABAAUAAAA9AP3/AAABAAcAAAA9APz/AAABAAUAAAA8AP3/AAABAAcAAAA8APz/AAABAAUAAAA7AP3/AAABAAcAAAA7APz/AAABAAUAAAA6AP3/AAAAAAcAAAA6APz/AAAAAAUAAABFAPn/AAAGAAQAAABEAPn/AAAFAAQAAABDAPn/AAAFAAQAAABCAPn/AAAFAAQAAABBAPn/AAAFAAQAAABAAPn/AAAFAAQAAAA/APn/AAAEAAQAAAA7APn/AAAGAAQAAAA6APn/AAAFAAQAAAA5APn/AAAFAAQAAAA4APn/AAAFAAQAAAA3APn/AAAFAAQAAAA2APn/AAAFAAQAAAA1APn/AAAEAAQAAABFAP//AAABAAUAAABEAP//AAABAAUAAABDAP//AAAAAAUAAABIAAAAAAACAAcAAABIAP//AAACAAUAAABHAAAAAAABAAcAAABHAP//AAABAAUAAABGAAAAAAABAAcAAABGAP//AAABAAUAAABFAAAAAAABAAcAAABEAAAAAAABAAcAAABDAAAAAAAAAAcAAAA=")
+tile_set = ExtResource("5_yyxgb")
+
+[node name="Obstacles" type="TileMapLayer" parent="Tilemap"]
+tile_map_data = PackedByteArray("AAA5AP3/AAAGAAcAAAA4AP3/AAAFAAcAAAA3AP3/AAAFAAcAAAA2AP3/AAAFAAcAAAA1AP3/AAAFAAcAAAA0AP3/AAAFAAcAAAAzAP3/AAAEAAcAAABCAPj/AAAGAAcAAABCAPf/AAAGAAYAAABCAPb/AAAGAAYAAABCAPX/AAAGAAYAAABCAPT/AAAGAAUAAAA=")
+tile_set = ExtResource("5_yyxgb")
+
+[node name="LevelEnd" parent="." instance=ExtResource("6_a7iqe")]
+position = Vector2(1101, -139)
+script = ExtResource("7_45yym")
+max_offset = Vector2(0, 0)
+
+[node name="Label" type="Label" parent="LevelEnd"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -138.5
+offset_top = -31.0
+offset_right = 122.5
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_jrmgl")
+text = "Memories are not allowed here"
+
+[node name="MemoryShard" parent="." instance=ExtResource("7_mv065")]
+position = Vector2(866, -63)
+memories = {
+"jump": 1,
+"left": 0,
+"memory": 0,
+"right": 2
+}

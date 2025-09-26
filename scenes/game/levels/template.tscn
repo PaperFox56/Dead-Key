@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://dohpab6ug2ekj"]
+
+[ext_resource type="Script" uid="uid://duppskmxrg2x7" path="res://scenes/game/levels/level.gd" id="1_fv5x7"]
+[ext_resource type="PackedScene" uid="uid://8mbaywudonqb" path="res://scenes/characters/player/player.tscn" id="2_nhyc0"]
+[ext_resource type="PackedScene" uid="uid://bi88hr3qhcc6s" path="res://scenes/ui/hud.tscn" id="3_13bht"]
+[ext_resource type="Shader" uid="uid://c85c086vgrap4" path="res://scenes/tests/screen_glitch.gdshader" id="4_q7imv"]
+[ext_resource type="TileSet" uid="uid://c5mgq4f37r3co" path="res://tilesets/game_tile_set.tres" id="5_qrd5u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bryu"]
+shader = ExtResource("4_q7imv")
+shader_parameter/time_offset = 10.0
+shader_parameter/_strength = 1.0
+shader_parameter/horizontal_lines = false
+shader_parameter/noise_size = 20.0
+shader_parameter/corruption = 0.0
+shader_parameter/noise_intensity = 1.0
+
+[node name="Level1" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_fv5x7")
+id = "level_1"
+player = NodePath("Player")
+
+[node name="Player" parent="." instance=ExtResource("2_nhyc0")]
+position = Vector2(1000, 0)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(66, -37)
+
+[node name="HUD" parent="Player" instance=ExtResource("3_13bht")]
+
+[node name="ScreenGlitch" type="ColorRect" parent="Player/HUD"]
+material = SubResource("ShaderMaterial_1bryu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Tilemap" type="Node2D" parent="."]
+
+[node name="Ground" type="TileMapLayer" parent="Tilemap"]
+tile_set = ExtResource("5_qrd5u")
+
+[node name="Obstacles" type="TileMapLayer" parent="Tilemap"]
+tile_set = ExtResource("5_qrd5u")

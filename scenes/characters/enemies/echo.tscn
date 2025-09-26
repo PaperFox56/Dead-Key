@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://bufpjdcsn32lc"]
+
+[ext_resource type="Shader" uid="uid://ykvpmj133mke" path="res://scenes/characters/enemies/invert_colors.gdshader" id="1_4splm"]
+[ext_resource type="Texture2D" uid="uid://b5pxjrayxonfr" path="res://assets/game/chracters/Dead key - player.png" id="1_xde4q"]
+[ext_resource type="Script" uid="uid://bhpo5xeiqqnsk" path="res://scenes/characters/enemies/echo.gd" id="2_4splm"]
+[ext_resource type="Shader" uid="uid://b1188wjk27wxq" path="res://scenes/objects/object_glitches.gdshader" id="3_wc0gj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xde4q"]
+shader = ExtResource("1_4splm")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4splm"]
+radius = 7.0
+height = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wc0gj"]
+shader = ExtResource("1_4splm")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rye1h"]
+atlas = ExtResource("1_xde4q")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a6h67"]
+shader = ExtResource("3_wc0gj")
+shader_parameter/glitch_active = true
+shader_parameter/time_offset = 0.0
+shader_parameter/_strength = 0.5
+shader_parameter/horizontal_lines = false
+shader_parameter/noise_size = 20.0
+shader_parameter/corruption = 0.5
+shader_parameter/noise_intensity = 0.5
+
+[node name="Echo" type="Area2D"]
+material = SubResource("ShaderMaterial_xde4q")
+script = ExtResource("2_4splm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_4splm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_wc0gj")
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_rye1h")
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
+material = SubResource("ShaderMaterial_a6h67")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -14.0
+offset_right = -1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

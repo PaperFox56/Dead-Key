@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://mvr22pk24xm1"]
+
+[ext_resource type="Script" uid="uid://bafx7txn7l4o1" path="res://scenes/game/intro_scene.gd" id="1_cyiki"]
+[ext_resource type="Theme" uid="uid://2ur347yr6l6x" path="res://scenes/ui/hud.tres" id="2_8viqp"]
+[ext_resource type="Shader" uid="uid://c85c086vgrap4" path="res://scenes/tests/screen_glitch.gdshader" id="3_8viqp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cvxvr"]
+shader = ExtResource("3_8viqp")
+shader_parameter/time_offset = 0.0
+shader_parameter/_strength = 0.4
+shader_parameter/horizontal_lines = false
+shader_parameter/noise_size = 20.0
+shader_parameter/corruption = 0.2
+shader_parameter/noise_intensity = 0.1
+
+[node name="IntroScene" type="CanvasLayer"]
+script = ExtResource("1_cyiki")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="InfoText" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_8viqp")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 10
+text = "Je suis ton pere, Luc Skywalker, Ah ah ah"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueLabel" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -24.0
+offset_right = 140.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_8viqp")
+theme_override_font_sizes/normal_font_size = 10
+text = "PRESS ANY KEY TO CONTINUE..."
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Panel" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_cvxvr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

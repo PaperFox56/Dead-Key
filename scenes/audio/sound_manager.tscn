@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv0tlcp3xtkl8"]
+
+[ext_resource type="AudioStream" uid="uid://de4l6l53efdph" path="res://assets/audio/fox (game theme 1).wav" id="1_jh1l8"]
+
+[node name="SoundManager" type="AudioStreamPlayer"]
+stream = ExtResource("1_jh1l8")
+autoplay = true

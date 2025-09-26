@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=4 uid="uid://d2crxerbgbo12"]
+
+[ext_resource type="Script" uid="uid://duppskmxrg2x7" path="res://scenes/game/levels/level.gd" id="1_x2ody"]
+[ext_resource type="PackedScene" uid="uid://8mbaywudonqb" path="res://scenes/characters/player/player.tscn" id="2_eom8k"]
+[ext_resource type="PackedScene" uid="uid://bi88hr3qhcc6s" path="res://scenes/ui/hud.tscn" id="3_s3pix"]
+[ext_resource type="PackedScene" uid="uid://e6pp2v6vbmx1" path="res://scenes/ui/screen_glitch.tscn" id="4_s3pix"]
+[ext_resource type="TileSet" uid="uid://c5mgq4f37r3co" path="res://tilesets/game_tile_set.tres" id="5_ik6v6"]
+[ext_resource type="PackedScene" uid="uid://c0kdiqjpn11qw" path="res://scenes/objects/memory_shard.tscn" id="6_s3pix"]
+[ext_resource type="PackedScene" uid="uid://dq342oqofipl1" path="res://scenes/objects/level_end.tscn" id="7_4awcv"]
+[ext_resource type="Theme" uid="uid://2ur347yr6l6x" path="res://scenes/ui/hud.tres" id="7_ik6v6"]
+
+[node name="Level2" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_x2ody")
+id = "level_2"
+player = NodePath("Player")
+memory = 10
+left = 2
+right = 1
+jumps = 5
+glitches = 1
+
+[node name="Player" parent="." instance=ExtResource("2_eom8k")]
+position = Vector2(1000, 0)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(66, -37)
+
+[node name="HUD" parent="Player" instance=ExtResource("3_s3pix")]
+
+[node name="ScreenGlitch" parent="Player/HUD" instance=ExtResource("4_s3pix")]
+
+[node name="Tilemap" type="Node2D" parent="."]
+
+[node name="Ground" type="TileMapLayer" parent="Tilemap"]
+tile_map_data = PackedByteArray("AABEAAMAAAACAAYAAABEAAIAAAACAAUAAABDAAMAAAABAAYAAABDAAIAAAABAAUAAABCAAMAAAABAAYAAABCAAIAAAABAAUAAABBAAMAAAABAAYAAABBAAIAAAABAAUAAABAAAMAAAABAAYAAABAAAIAAAABAAUAAAA/AAMAAAABAAYAAAA/AAIAAAABAAUAAAA+AAMAAAABAAYAAAA+AAIAAAABAAUAAAA9AAMAAAABAAYAAAA9AAIAAAABAAUAAAA8AAMAAAABAAYAAAA8AAIAAAABAAUAAAA7AAMAAAABAAYAAAA7AAIAAAABAAUAAABEAAQAAAACAAcAAABDAAQAAAABAAcAAABCAAQAAAABAAcAAABBAAQAAAABAAcAAABAAAQAAAABAAcAAAA/AAQAAAABAAcAAAA+AAQAAAABAAcAAAA9AAQAAAABAAcAAAA8AAQAAAABAAcAAAA7AAQAAAABAAcAAABKAAAAAAAGAAQAAABJAAAAAAAFAAQAAABIAAAAAAAFAAQAAABHAAAAAAAFAAQAAABGAAAAAAAEAAQAAABGAP3/AAAGAAQAAABFAP3/AAAFAAQAAABEAP3/AAAFAAQAAABDAP3/AAAFAAQAAABCAP3/AAAEAAQAAAA6AAQAAAABAAcAAAA6AAMAAAABAAYAAAA6AAIAAAABAAUAAAA5AAQAAAABAAcAAAA5AAMAAAABAAYAAAA5AAIAAAABAAUAAAA4AAQAAAABAAcAAAA4AAMAAAABAAYAAAA4AAIAAAABAAUAAAA3AAQAAAAAAAcAAAA3AAMAAAAAAAYAAAA3AAIAAAAAAAUAAAA2AP//AAAGAAQAAAA1AP//AAAFAAQAAAA0AP//AAAFAAQAAAAzAP//AAAFAAQAAAAyAP//AAAEAAQAAAA6AAEAAAAEAAYAAAA6AAAAAAAEAAYAAAA6AP//AAAEAAYAAAA6AP7/AAAEAAYAAAA6AP3/AAAEAAYAAAA6APz/AAAEAAUAAAA5AAEAAAAGAAYAAAA5AAAAAAAGAAYAAAA5AP//AAAGAAYAAAA5AP7/AAAGAAYAAAA5AP3/AAAGAAYAAAA5APz/AAAGAAUAAAA5APv/AAAFAAcAAAA6APv/AAAFAAcAAAA+AP3/AAAGAAQAAAA9AP3/AAAEAAQAAAAxAPz/AAAGAAQAAAAwAPz/AAAFAAQAAAAvAPz/AAAFAAQAAAAuAPz/AAAFAAQAAAAtAPz/AAAEAAQAAAA=")
+tile_set = ExtResource("5_ik6v6")
+
+[node name="Obstacles" type="TileMapLayer" parent="Tilemap"]
+tile_set = ExtResource("5_ik6v6")
+
+[node name="LevelEnd" parent="." instance=ExtResource("7_4awcv")]
+position = Vector2(735, -78)
+
+[node name="Label" type="Label" parent="LevelEnd"]
+offset_left = 214.0
+offset_top = 56.0
+offset_right = 382.0
+offset_bottom = 79.0
+theme = ExtResource("7_ik6v6")
+theme_override_font_sizes/font_size = 8
+text = "What is a wall anyway"
+
+[node name="MemoryShard" parent="." instance=ExtResource("6_s3pix")]
+position = Vector2(992, -65)
+memories = {
+"jump": 1,
+"left": 0,
+"memory": 1,
+"right": 0
+}
